@@ -8,7 +8,9 @@ const TodosItem: React.FC = () => {
 				Todo 1
 			</Link>
 			<button>Delete</button>
-			<button>Edit</button>
+			<button>
+				<Link href="/todos/[id]/edit" as={`/todos/1/edit`}>Edit</Link>
+			</button>
 		</li>
 	);
 };
