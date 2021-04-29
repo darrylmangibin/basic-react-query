@@ -40,3 +40,23 @@ export const deleteTodo = async (id: string) => {
 		throw { message: 'Something went wrong' };
 	}
 };
+
+export const updateTodo = async ({ id, ...others }: Partial<Todo>) => {
+	const config: AxiosRequestConfig = {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	};
+
+	try {
+		const { data } = await axios.patch(
+			`http://localhost:5000/todos/${id}`,
+			others,
+			config
+		);
+
+		return data;
+	} catch (err) {
+		throw { message: 'Something went wrong' };
+	}
+};

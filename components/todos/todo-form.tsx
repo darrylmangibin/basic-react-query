@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Todo } from '../../interface/Todo';
 
 interface TodoFormProps {
 	onSubmit?: (arg: Partial<Todo>) => Promise<void> | void;
+	todo?: Todo;
 }
 
-const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {
+const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, todo }) => {
 	const [title, setTitle] = useState<string>('');
 	const [completed, setCompleted] = useState<boolean>(false);
 
@@ -15,6 +16,13 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {
 
 		onSubmit({ title, completed });
 	};
+
+	useEffect(() => {
+		if (todo) {
+			setTitle(todo.title);
+			setCompleted(todo.completed);
+		}
+	}, [todo]);
 
 	return (
 		<form onSubmit={onSubmitHandler}>
