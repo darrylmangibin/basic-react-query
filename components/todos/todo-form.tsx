@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 
-const TodoForm: React.FC = () => {
+import { Todo } from '../../interface/Todo';
+
+interface TodoFormProps {
+	onSubmit?: (arg: Partial<Todo>) => Promise<void> | void;
+}
+
+const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }) => {
 	const [title, setTitle] = useState<string>('');
 	const [completed, setCompleted] = useState<boolean>(false);
 
+	const onSubmitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
+		e.preventDefault();
+
+		onSubmit({ title, completed });
+	};
+
 	return (
-		<form>
+		<form onSubmit={onSubmitHandler}>
 			<div>
 				<label htmlFor="title">Title: </label>
 				<input
