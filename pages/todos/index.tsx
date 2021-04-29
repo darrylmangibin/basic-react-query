@@ -3,7 +3,12 @@ import { NextPage } from 'next';
 
 import TodosItem from '../../components/todos/todos-item';
 
-const TodosPage: NextPage = () => {
+import { Todo } from '../../interface/Todo';
+interface TodosPageProps {
+	todos: Todo[];
+}
+
+const TodosPage: NextPage<TodosPageProps> = ({ todos }) => {
 	return (
 		<div>
 			<h3>Todos</h3>
