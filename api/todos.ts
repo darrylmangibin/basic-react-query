@@ -7,3 +7,9 @@ export const getTodos = async (): Promise<Todo[]> => {
 
 	return data;
 };
+
+export const getTodo = async (id: string): Promise<Todo> => {
+	const { data } = await axios.get<Todo>(`http://localhost:5000/todos/${id}`);
+
+	return data;
+};

@@ -6,4 +6,5 @@ export interface Todo {
 
 export enum QueryKeyEnum {
 	TODOS = 'TODOS',
+	TODO = 'TODO',
 }
